@@ -14,6 +14,9 @@ def detail(request, post_id):
     category = Category.objects.all()
     post = Post.objects.get(id=post_id)
 
+    post.views += 1
+    post.save()
+
     if request.method == "POST":
         name = request.POST.get("name")
         comment = request.POST.get("comment")
