@@ -26,7 +26,7 @@ class Post(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.PROTECT, related_name="categories"
     )
-    tag = models.ManyToManyField(Tag, on_delete=models.PROTECT, related_name="tags")
+    tag = models.ManyToManyField(Tag)
     views = models.PositiveIntegerField(default=0)
     publish_date = models.DateTimeField(verbose_name="Publish time", auto_now_add=True)
     published = models.BooleanField(default=True)
