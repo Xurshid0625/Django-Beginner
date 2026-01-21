@@ -24,7 +24,7 @@ class Post(models.Model):
         verbose_name="Post Author", default="Admin", max_length=100
     )
     category = models.ForeignKey(
-        Category, on_delete=models.PROTECT, related_name="categories"
+        Category, on_delete=models.PROTECT, related_name="posts"
     )
     tag = models.ManyToManyField(Tag)
     views = models.PositiveIntegerField(default=0)
