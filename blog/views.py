@@ -1,5 +1,7 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, redirect
 from .models import Category, Tag, Post, Comment
+
+from .utils import check_read_articles
 
 
 def home_page(request):
@@ -14,8 +16,12 @@ def detail(request, post_id):
     category = Category.objects.all()
     post = Post.objects.get(id=post_id)
 
-    post.views += 1
-    post.save()
+    if post.id in check_read_articles(request):
+        pass
+    else:
+        check_read_articles(request).append(post.id)
+        post.views += 1
+        post.save()
 
     if request.method == "POST":
         name = request.POST.get("name")
