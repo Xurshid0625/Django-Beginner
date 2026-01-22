@@ -78,11 +78,11 @@
                       </div>
                       <div class="post-set-rating">
                         <p class="card-text fs-4">
-                          <a href=""><i class="bi bi-star"></i></a>
-                          <a href=""><i class="bi bi-star"></i></a>
-                          <a href=""><i class="bi bi-star"></i></a>
-                          <a href=""><i class="bi bi-star"></i></a>
-                          <a href=""><i class="bi bi-star"></i></a>
+                          <a href="{% url 'blog:rating' 1 post.id %}"><i class="bi bi-star"></i></a>
+                          <a href="{% url 'blog:rating' 2 post.id %}"><i class="bi bi-star"></i></a>
+                          <a href="{% url 'blog:rating' 3 post.id %}"><i class="bi bi-star"></i></a>
+                          <a href="{% url 'blog:rating' 4 post.id %}"><i class="bi bi-star"></i></a>
+                          <a href="{% url 'blog:rating' 5 post.id %}"><i class="bi bi-star"></i></a>
                         </p>
                       </div>
                     </div>

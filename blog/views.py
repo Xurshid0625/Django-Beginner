@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Category, Tag, Post, Comment
+from .models import Category, Post, Comment, Rating
 
 from .utils import check_read_articles
 
@@ -33,3 +33,12 @@ def detail(request, post_id):
     return render(
         request, "detail.html", context={"post": post, "categories": category}
     )
+
+
+def set_rating(request, value, post_id):
+    post = Post.objects.get(id=post_id)
+    value = int(value)
+
+    if all([post, value]):
+        Rating.objects.create(post=post, value=value)
+    return redirect("/")
