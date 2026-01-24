@@ -32,6 +32,10 @@ class Post(models.Model):
     published = models.BooleanField(default=True)
     on_top = models.BooleanField(default=False)
 
+    def get_avg_rating(self):
+        sum_ratings = sum([int(i.value) for i in self.ratings.all()])
+        return sum_ratings / self.ratings.all().count()
+
     def __str__(self):
         return str(self.title)
 

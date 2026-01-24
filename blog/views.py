@@ -7,8 +7,9 @@ from .utils import check_read_articles
 def home_page(request):
     categories = Category.objects.all()
     posts = Post.objects.all()
-    print(posts)
-    data = {"categories": categories, "posts": posts}
+    last_comments = Comment.objects.all().order_by("-id")[:10]
+
+    data = {"categories": categories, "posts": posts, "last_comments": last_comments}
     return render(request=request, template_name="index.html", context=data)
 
 
