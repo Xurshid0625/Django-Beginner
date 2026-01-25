@@ -9,4 +9,5 @@ urlpatterns = [
     path("", views.home_page, name="home"),
     path("detail/<int:post_id>", views.detail, name="detail"),
     path("rating/<int:value>/<int:post_id>", views.set_rating, name="rating"),
+    path("search/", views.search, name="search"),
 ]

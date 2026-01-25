@@ -26,8 +26,8 @@
                 <a class="nav-link" href="#">Contact me</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" control-id="ControlID-1" />
+            <form class="d-flex" role="search" action="{% url 'blog:search' %}" method="get">
+              <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search" control-id="ControlID-1" />
               <button class="btn btn-outline-success" type="submit" control-id="ControlID-2">Search</button>
             </form>
           </div>
@@ -121,12 +121,11 @@
                 </a>
                 <div class="list-group list-group-flush border-bottom scrollarea">
                   {% for comment in last_comments %}
-                    <a href="#" class="list-group-item list-group-item-action py-3 lh-sm">
+                    <a href="{% url 'blog:detail' comment.post.id %}" class="list-group-item list-group-item-action py-3 lh-sm">
                       <div class="d-flex w-100 align-items-center justify-content-between">
-                        <strong class="mb-1">List group item heading</strong>
-                        <small class="text-body-secondary">Mon</small>
+                        <strong class="mb-1">{{ comment.post.title }}</strong>
                       </div>
-                      <div class="col-10 mb-1 small">Some placeholder content in a paragraph below the heading and date.</div>
+                      <div class="col-10 mb-1 small">{{ comment.comment }}</div>
                     </a>
                   {% endfor %}
                 </div>

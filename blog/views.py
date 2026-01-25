@@ -43,3 +43,26 @@ def set_rating(request, value, post_id):
     if all([post, value]):
         Rating.objects.create(post=post, value=value)
     return redirect("/")
+
+
+def category_list(request, category_slug):
+    category = Category.objects.get(slug=category_slug)
+    posts = Post.objects.filter(category=category)
+    last_comments = Comment.objects.all().order_by("-id")[:10]
+
+    return render(
+        request,
+        "category.html",
+        context={"posts": posts, "category": category, "last_comments": last_comments},
+    )
+
+
+def search(request):
+    last_comments = Comment.objects.all().order_by("-id")[:10]
+    query = request.GET.get("query")
+    posts = Post.objects.filter(title__icontains=query)
+    return render(
+        request,
+        "index.html",
+        context={"posts": posts, "last_comments": last_comments},
+    )
