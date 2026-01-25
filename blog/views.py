@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from .models import Category, Post, Comment, Rating
 
 from .utils import check_read_articles
